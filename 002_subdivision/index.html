@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+    <script src="skech.js"></script>
+    <script src="subdivide.js"></script>
+    <script src="mesh.js"></script>
+    <title>catmull-clark</title>
+</head>
+<body>
+    <h1>Catmull-Clark Subdivision Surface</h1>
+    <p>
+        Catmull Clark法によるサブディビジョンサーフェスの実装<br/>
+        .objファイルをパースして読み込み、サブディビジョンをする処理を実装しました。<br/>
+        ボリゴンの描画にp5.jsを使用しています。
+    </p>
+    <input type="file" id="fileInput" accept=".obj">
+    <pre id="output"></pre>
+
+    <script src="parser.js"></script>
+    <button id="subdivideButton">subdivide</button>
+
+</body>
+</html>
