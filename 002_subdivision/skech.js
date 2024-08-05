@@ -1,20 +1,29 @@
+let lastMouseX;
+let lastMouseY;
+let isDragging = false;
+
+let angle = 0;
 
 function setup() {
     createCanvas(800, 600, WEBGL);
+    angleMode(DEGREES);
 }
 
 function draw() {
     if (faces === undefined) return;
     if (vertices === undefined) return;
-    translate(-100, 0, 0);
+    clear();
     scale(80);
-    rotateZ(180);
+
+    rotateY(angle * 0.7);
     faces.forEach(vIdArr => {
         beginShape();
         vIdArr.forEach(vId => {
-            const [x, y, z] = vertices[vId - 1];
+            const [x, y, z] = vertices[vId];
             vertex(x, y, z);
         });
         endShape(CLOSE);
     });
+
+    angle += 1;
 }

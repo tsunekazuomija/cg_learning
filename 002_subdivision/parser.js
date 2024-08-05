@@ -2,6 +2,7 @@ document.getElementById('fileInput').addEventListener('change', handleFileSelect
 
 let vertices = [];
 let faces = [];
+let mesh;
 
 function handleFileSelect(event) {
     const file = event.target.files[0];
@@ -13,6 +14,8 @@ function handleFileSelect(event) {
         const lines = fileContent.split('\n');
         vertices = extractVertices(lines);
         faces = extractFaces(lines);
+        faces = faces.map(face => face.map(index => index - 1));
+        mesh = new Mesh(vertices, faces);
     };
     reader.readAsText(file);
 }
@@ -47,3 +50,16 @@ function extractFaces(lines) {
 
     return faces;
 }
+
+async function readDefaultMesh() {
+    const file = 'cube.obj';
+    const response = await fetch(file);
+    const fileContent = await response.text();
+    const lines = fileContent.split('\n');
+    vertices = extractVertices(lines);
+    faces = extractFaces(lines);
+    faces = faces.map(face => face.map(index => index - 1));
+    mesh = new Mesh(vertices, faces);
+}
+
+readDefaultMesh();
